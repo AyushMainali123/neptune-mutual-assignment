@@ -14,6 +14,7 @@
     "@trpc/next": "^10.18.0",
     "@trpc/react-query": "^10.18.0",
     "@trpc/server": "^10.18.0",
+    "husky": "^8.0.3",
     "next": "^13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -21,6 +22,8 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
     "@types/eslint": "^8.21.3",
     "@types/node": "^18.15.5",
     "@types/prettier": "^2.7.2",
@@ -39,5 +42,13 @@
   },
   "ct3aMetadata": {
     "initVersion": "7.10.1"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint"
+    ],
+    "*.{ts,tsx,css}": [
+      "prettier"
+    ]
   }
 }
