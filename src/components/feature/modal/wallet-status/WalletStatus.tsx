@@ -3,35 +3,47 @@ import { useAccount } from 'wagmi';
 import { type IConnectWalletProps } from './WalletStatus.types';
 import ConnectWallet from './feature/connect-wallet';
 import DisplayWallet from './feature/display-wallet';
-const WalletModalTitle = () => {
-  return <div className="text-2xl">Wallet details</div>;
+const WalletModalTitle = ({ isConnected }: { isConnected: boolean }) => {
+  return (
+    <div className="text-2xl">
+      {isConnected ? 'Wallet details' : 'Connect wallet'}
+    </div>
+  );
 };
 
 const WalletNotConnectedDescription = () => {
   return (
     // eslint-disable-next-line react/no-unescaped-entities
-    <span className="text-red-600">
-      Wallet not connected. Please click {`"Connect now"`} button to connect.
+    <span className="text-gray-600">
+      It seems your wallet is not connected yet. Please click on{' '}
+      <span className="text-red-700">Connect </span>
+      button to view your wallet details.
     </span>
   );
 };
 
 const ConnectWalletModal = ({ isOpen, onClose }: IConnectWalletProps) => {
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
   console.log({ address });
   return (
     <Modal
       isOpen={isOpen}
-      title={<WalletModalTitle />}
-      description={<WalletNotConnectedDescription />}
+      title={<WalletModalTitle isConnected={isConnected} />}
+      description={!address && <WalletNotConnectedDescription />}
       onClose={onClose}
       ariaLabel="Connect metamask wallet"
       shouldCloseOnOverlayClick={false}
+      panelClassName="w-[96vw] max-w-md"
     >
-      {!address && <ConnectWallet onConnectWalletCancel={onClose} />}
-      {!!address && (
-        <DisplayWallet walletAddress={address} onDisconnect={() => onClose()} />
-      )}
+      <div className="mt-8">
+        {!address && <ConnectWallet onConnectWalletCancel={onClose} />}
+        {!!address && (
+          <DisplayWallet
+            walletAddress={address}
+            onDisconnect={() => onClose()}
+          />
+        )}
+      </div>
     </Modal>
   );
 };

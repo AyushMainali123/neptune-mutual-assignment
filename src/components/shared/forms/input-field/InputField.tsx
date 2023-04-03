@@ -12,11 +12,21 @@ const InputField = forwardRef<HTMLInputElement, IInputFieldCOmponentProps>(
   ({ label, containerClassName, inputProps, inputClassName }, ref) => {
     return (
       <div className={containerClassName}>
-        {!!label && <label htmlFor={label}>{label}</label>}
+        {!!label && (
+          <label
+            htmlFor={label}
+            className="mb-1 block font-inter text-gray-700"
+          >
+            {label}
+          </label>
+        )}
         <input
           ref={ref}
           id={label}
-          className={twMerge('text-black', inputClassName)}
+          className={twMerge(
+            'rounded-[4px] border-gray-300 text-black focus:border-blue-brand',
+            inputClassName
+          )}
           {...inputProps}
         />
       </div>

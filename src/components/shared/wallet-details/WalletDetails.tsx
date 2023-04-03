@@ -1,14 +1,18 @@
-import ConnectWalletModal from '@/components/feature/modal/wallet-status';
+import Button from '@/components/core/button';
+import WalletStatusModal from '@/components/feature/modal/wallet-status';
 import { useState } from 'react';
 
 const WalletDetails = () => {
   const [isConnectWalletModalOpen, setConnectWalletModalOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setConnectWalletModalOpen(true)}>
+      <Button
+        buttonProps={{ onClick: () => setConnectWalletModalOpen(true) }}
+        className="w-full"
+      >
         Wallet details
-      </button>
-      <ConnectWalletModal
+      </Button>
+      <WalletStatusModal
         isOpen={isConnectWalletModalOpen}
         onClose={() => setConnectWalletModalOpen(false)}
       />

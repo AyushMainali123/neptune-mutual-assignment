@@ -29,15 +29,19 @@ function Modal({
       aria-label={ariaLabel}
     >
       {/* The backdrop, rendered as a fixed sibling to the panel container */}
-      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+      <div className="fixed inset-0 bg-white/70 backdrop-blur-sm" aria-hidden="true" />
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <Dialog.Panel
           className={twMerge(
-            'relative w-full max-w-sm rounded bg-white px-10 py-8',
+            'relative w-full max-w-sm rounded bg-white px-10 py-8 shadow-md',
             panelClassName
           )}
         >
-          {!!title && <Dialog.Title>{title}</Dialog.Title>}
+          {!!title && (
+            <Dialog.Title className={'mb-2 font-manrope text-lg font-semibold'}>
+              {title}
+            </Dialog.Title>
+          )}
           {showCloseIcon && (
             <button
               aria-label="Close modal"
