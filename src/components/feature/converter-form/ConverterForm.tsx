@@ -75,7 +75,9 @@ const ConverterForm = () => {
 
   return (
     <div>
-      <h2 className="mb-8 text-2xl font-semibold">Crypto Converter</h2>
+      <h2 className="mb-5 font-manrope text-xl font-semibold text-zinc-950">
+        Crypto Converter
+      </h2>
       <div className="mb-4">
         <InputField
           inputClassName="w-full"
@@ -90,10 +92,10 @@ const ConverterForm = () => {
       </div>
       <button
         aria-label="Swap Currency"
-        className="mx-auto my-6 block"
+        className="mx-auto my-2 block"
         onClick={handleSwapButtonClick}
       >
-        <Icon icon="charm:swap-vertical" hFlip={true} />
+        <Icon icon="charm:swap-vertical" hFlip={true} width={'24'} />
       </button>
       <div>
         <InputField

@@ -8,10 +8,7 @@ interface IDefaultCardComponentProps {
 const DefaultCard = ({ children, className }: IDefaultCardComponentProps) => {
   return (
     <div
-      className={twMerge(
-        'rounded-md bg-gray-800 px-12 py-16 shadow-md',
-        className
-      )}
+      className={twMerge('rounded-md bg-white px-4 py-6 shadow-lg', className)}
     >
       {children}
     </div>
