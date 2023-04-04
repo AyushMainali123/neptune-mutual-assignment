@@ -4,12 +4,19 @@ import { api } from '@/utils/api';
 
 import { inter, manrope } from '@/assets/font';
 import '@/styles/globals.css';
-import { getDefaultProvider } from 'ethers';
-import { WagmiConfig, createClient } from 'wagmi';
+import { bsc, goerli, mainnet, sepolia } from '@wagmi/core/chains';
+import { publicProvider } from '@wagmi/core/providers/public';
+import { WagmiConfig, configureChains, createClient } from 'wagmi';
+
+const { provider, webSocketProvider } = configureChains(
+  [mainnet, goerli, sepolia, bsc],
+  [publicProvider()]
+);
 
 const client = createClient({
   autoConnect: true,
-  provider: getDefaultProvider(),
+  provider,
+  webSocketProvider,
 });
 
 const MyApp: AppType = ({ Component, pageProps }) => {

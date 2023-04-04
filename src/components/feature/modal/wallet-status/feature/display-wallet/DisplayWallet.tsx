@@ -1,14 +1,12 @@
 import Button from '@/components/core/button';
-import useCopyToClipboard from '@/hooks/use-copy-to-clipboard';
-import { Popover } from '@headlessui/react';
-import { Icon } from '@iconify/react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useBalance, useDisconnect, useNetwork } from 'wagmi';
 import {
   type IDisplayWalletComponentProps,
   type ISingleTableComponentProps,
 } from './DisplayWallet.types';
+import CopyWalletAddress from './features/copy-wallet-address';
 const SingleTableElement = ({
   leftElement,
   rightElement,
@@ -33,8 +31,6 @@ const DisplayWallet = ({
   walletAddress,
   onDisconnect,
 }: IDisplayWalletComponentProps) => {
-  const [, copyFn] = useCopyToClipboard();
-
   const {
     data,
     // isError,
@@ -43,8 +39,6 @@ const DisplayWallet = ({
     address: walletAddress,
     staleTime: 100_000,
   });
-
-  const [isCopiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const {
     disconnect,
@@ -60,18 +54,6 @@ const DisplayWallet = ({
     }
   }, [isSuccessfullyDisconnected, onDisconnect]);
 
-  const handleCopyTextToClipboard = () => {
-    copyFn(walletAddress)
-      .then(() => {
-        setCopiedToClipboard(true);
-        const intervalId = setTimeout(() => {
-          setCopiedToClipboard(false);
-          clearInterval(intervalId);
-        }, 3000);
-      })
-      .catch((err) => console.log(err));
-  };
-
   return (
     <div>
       <SingleTableElement
@@ -86,23 +68,9 @@ const DisplayWallet = ({
             <div>
               {walletAddress.slice(0, 5) + '...' + walletAddress.slice(-4)}
             </div>
-            <Popover className="relative">
-              <Popover.Button as={'div'}>
-                <Button
-                  className="grid h-5 w-5 place-content-center rounded-[4px] p-0"
-                  buttonProps={{
-                    'aria-label': 'Copy to clipboard',
-                    onClick: () => handleCopyTextToClipboard(),
-                  }}
-                >
-                  <Icon icon="material-symbols:content-copy" width={'12px'} />
-                </Button>{' '}
-              </Popover.Button>
-
-              <Popover.Panel className="absolute right-[-20px] z-10 w-[200px] rounded-sm bg-white p-4 text-center shadow-md">
-                {isCopiedToClipboard ? 'Copied to clipboard' : 'Copy text'}
-              </Popover.Panel>
-            </Popover>
+            <div>
+              <CopyWalletAddress walletAddress={walletAddress} />
+            </div>
           </div>
         }
       />
@@ -111,7 +79,7 @@ const DisplayWallet = ({
         leftElement={'Wallet Balance'}
         rightElement={
           <div>
-            {data?.value._hex} {data?.symbol}
+            {data?.formatted} {data?.symbol}
           </div>
         }
         containerClassName="border-b-0"
