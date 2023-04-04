@@ -32,12 +32,11 @@ const DisplayWallet = ({
   onDisconnect,
 }: IDisplayWalletComponentProps) => {
   const {
-    data,
-    // isError,
-    // isLoading: isCheckingBalance,
+    data: balance,
+    error: balanceError,
+    isLoading: isCheckingBalance,
   } = useBalance({
     address: walletAddress,
-    staleTime: 100_000,
   });
 
   const {
@@ -59,7 +58,7 @@ const DisplayWallet = ({
       <SingleTableElement
         leftElement={'Key'}
         rightElement={'value'}
-        containerClassName="text-zinc-950 border-t-[1px]"
+        containerClassName="text-zinc-950 font-medium border-t-[1px]"
       />
       <SingleTableElement
         leftElement={'Account'}
@@ -74,12 +73,28 @@ const DisplayWallet = ({
           </div>
         }
       />
-      <SingleTableElement leftElement={'ChainID'} rightElement={chain?.id} />
+      <SingleTableElement
+        leftElement={'ChainID'}
+        rightElement={chain ? chain.id : 'No chain found'}
+      />
       <SingleTableElement
         leftElement={'Wallet Balance'}
         rightElement={
           <div>
-            {data?.formatted} {data?.symbol}
+            {/* This is the loading skeleton shown when the balance is in loading state */}
+            {isCheckingBalance && (
+              <div className="text-bg-slate-700  h-6 w-12 animate-pulse rounded-sm bg-slate-400"></div>
+            )}
+
+            {/* This is shown when there is error in checking balance */}
+            {balanceError && <>{balanceError.message}</>}
+
+            {/* This is the balance when the balance is available */}
+            {!!balance && (
+              <>
+                {balance?.formatted} {balance?.symbol}
+              </>
+            )}
           </div>
         }
         containerClassName="border-b-0"
