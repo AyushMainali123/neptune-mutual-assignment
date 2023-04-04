@@ -1,9 +1,13 @@
 import Button from '@/components/core/button';
-import { ToastContainer, toast } from '@/components/core/toast';
+import { toast } from '@/components/core/toast';
 import useCopyToClipboard from '@/hooks/use-copy-to-clipboard';
 import { Icon } from '@iconify/react';
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
+const ToastContainer = dynamic(() => import('@/components/core/toast'), {
+  ssr: false,
+});
 interface ICopyWalletAddressProps {
   walletAddress: `0x${string}`;
 }
@@ -26,11 +30,7 @@ const CopyWalletAddress = ({ walletAddress }: ICopyWalletAddressProps) => {
   useEffect(() => {
     if (isCopiedToClipboard) {
       toast.dismiss();
-      toast.success('Successfully copied to clipboard', {
-        position: 'top-center',
-        autoClose: 3000,
-        theme: 'light',
-      });
+      toast.success('Successfully copied to clipboard');
     }
   }, [isCopiedToClipboard]);
 
@@ -45,7 +45,13 @@ const CopyWalletAddress = ({ walletAddress }: ICopyWalletAddressProps) => {
       >
         <Icon icon="material-symbols:content-copy" width={'12px'} />
       </Button>
-      <ToastContainer limit={3} />
+      <ToastContainer
+        limit={3}
+        position="top-center"
+        autoClose={3000}
+        theme="light"
+        className={'z-[99999]'}
+      />
     </>
   );
 };

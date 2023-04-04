@@ -1,11 +1,9 @@
-import { type AppType } from 'next/app';
-
-import { api } from '@/utils/api';
-
 import { inter, manrope } from '@/assets/font';
 import '@/styles/globals.css';
+import { api } from '@/utils/api';
 import { bsc, goerli, mainnet, sepolia } from '@wagmi/core/chains';
 import { publicProvider } from '@wagmi/core/providers/public';
+import { type AppType } from 'next/app';
 import { WagmiConfig, configureChains, createClient } from 'wagmi';
 
 const { provider, webSocketProvider } = configureChains(

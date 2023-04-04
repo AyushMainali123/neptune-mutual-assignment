@@ -24,7 +24,6 @@ const WalletNotConnectedDescription = () => {
 
 const ConnectWalletModal = ({ isOpen, onClose }: IConnectWalletProps) => {
   const { address, isConnected } = useAccount();
-  console.log({ address });
   return (
     <Modal
       isOpen={isOpen}
