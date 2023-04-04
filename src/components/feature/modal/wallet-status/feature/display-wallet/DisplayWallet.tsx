@@ -1,14 +1,12 @@
 import Button from '@/components/core/button';
-import useCopyToClipboard from '@/hooks/use-copy-to-clipboard';
-import { Popover } from '@headlessui/react';
-import { Icon } from '@iconify/react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useBalance, useDisconnect, useNetwork } from 'wagmi';
 import {
   type IDisplayWalletComponentProps,
   type ISingleTableComponentProps,
 } from './DisplayWallet.types';
+import CopyWalletAddress from './features/copy-wallet-address';
 const SingleTableElement = ({
   leftElement,
   rightElement,
@@ -33,18 +31,13 @@ const DisplayWallet = ({
   walletAddress,
   onDisconnect,
 }: IDisplayWalletComponentProps) => {
-  const [, copyFn] = useCopyToClipboard();
-
   const {
-    data,
-    // isError,
-    // isLoading: isCheckingBalance,
+    data: balance,
+    error: balanceError,
+    isLoading: isCheckingBalance,
   } = useBalance({
     address: walletAddress,
-    staleTime: 100_000,
   });
-
-  const [isCopiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const {
     disconnect,
@@ -60,24 +53,12 @@ const DisplayWallet = ({
     }
   }, [isSuccessfullyDisconnected, onDisconnect]);
 
-  const handleCopyTextToClipboard = () => {
-    copyFn(walletAddress)
-      .then(() => {
-        setCopiedToClipboard(true);
-        const intervalId = setTimeout(() => {
-          setCopiedToClipboard(false);
-          clearInterval(intervalId);
-        }, 3000);
-      })
-      .catch((err) => console.log(err));
-  };
-
   return (
     <div>
       <SingleTableElement
         leftElement={'Key'}
         rightElement={'value'}
-        containerClassName="text-zinc-950 border-t-[1px]"
+        containerClassName="text-zinc-950 font-medium border-t-[1px]"
       />
       <SingleTableElement
         leftElement={'Account'}
@@ -86,32 +67,34 @@ const DisplayWallet = ({
             <div>
               {walletAddress.slice(0, 5) + '...' + walletAddress.slice(-4)}
             </div>
-            <Popover className="relative">
-              <Popover.Button as={'div'}>
-                <Button
-                  className="grid h-5 w-5 place-content-center rounded-[4px] p-0"
-                  buttonProps={{
-                    'aria-label': 'Copy to clipboard',
-                    onClick: () => handleCopyTextToClipboard(),
-                  }}
-                >
-                  <Icon icon="material-symbols:content-copy" width={'12px'} />
-                </Button>{' '}
-              </Popover.Button>
-
-              <Popover.Panel className="absolute right-[-20px] z-10 w-[200px] rounded-sm bg-white p-4 text-center shadow-md">
-                {isCopiedToClipboard ? 'Copied to clipboard' : 'Copy text'}
-              </Popover.Panel>
-            </Popover>
+            <div>
+              <CopyWalletAddress walletAddress={walletAddress} />
+            </div>
           </div>
         }
       />
-      <SingleTableElement leftElement={'ChainID'} rightElement={chain?.id} />
+      <SingleTableElement
+        leftElement={'ChainID'}
+        rightElement={chain ? chain.id : 'No chain found'}
+      />
       <SingleTableElement
         leftElement={'Wallet Balance'}
         rightElement={
           <div>
-            {data?.value._hex} {data?.symbol}
+            {/* This is the loading skeleton shown when the balance is in loading state */}
+            {isCheckingBalance && (
+              <div className="text-bg-slate-700  h-6 w-12 animate-pulse rounded-sm bg-slate-400"></div>
+            )}
+
+            {/* This is shown when there is error in checking balance */}
+            {balanceError && <>{balanceError.message}</>}
+
+            {/* This is the balance when the balance is available */}
+            {!!balance && (
+              <>
+                {balance?.formatted} {balance?.symbol}
+              </>
+            )}
           </div>
         }
         containerClassName="border-b-0"

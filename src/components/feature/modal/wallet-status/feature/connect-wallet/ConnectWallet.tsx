@@ -6,7 +6,7 @@ import { type IConnectWalletComponentProps } from './ConnectWallet.types';
 const ConnectWallet = ({
   onConnectWalletCancel,
 }: IConnectWalletComponentProps) => {
-  const { connect, isLoading } = useConnect({
+  const { connect, isLoading, error } = useConnect({
     connector: new InjectedConnector(),
   });
 
@@ -16,6 +16,7 @@ const ConnectWallet = ({
 
   return (
     <div>
+      {!!error && <div className="mb-4 text-red-500">Error: {error.message}</div>}
       <div className="flex justify-between gap-3">
         <Button
           buttonProps={{ onClick: onConnectWalletCancel }}
@@ -27,8 +28,9 @@ const ConnectWallet = ({
         <Button
           buttonProps={{ onClick: handleConnectWallet, disabled: isLoading }}
           className="flex-1"
+          isLoading={isLoading}
         >
-          Connect {isLoading && '...'}
+          Connect
         </Button>
       </div>
     </div>
