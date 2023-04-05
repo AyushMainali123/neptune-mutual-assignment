@@ -76,7 +76,7 @@ const ConverterForm = () => {
 
   return (
     <>
-      <CardWithTitle title="Crypto Converter">
+      <CardWithTitle title="NEB/BUSD Converter">
         <div className="mb-4">
           <InputField
             inputClassName="w-full"

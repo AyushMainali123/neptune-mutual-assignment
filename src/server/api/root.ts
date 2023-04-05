@@ -1,6 +1,6 @@
 import { exampleRouter } from '@/server/api/routers/example';
 import { createTRPCRouter } from '@/server/api/trpc';
-import { tokenPriceRouter } from './routers/token-price/index.';
+import { tokenPriceRouter } from './routers/moralis/token-price/index.';
 
 /**
  * This is the primary router for your server.
