@@ -34,20 +34,20 @@ const InputWithSelect = forwardRef<
       <div className={containerClassName}>
         {!!label && <label className="mb-1 block">{label}</label>}
 
-        <div className="flex items-center gap-[1px] rounded-[4px]  border focus:border-blue-brand">
+        <div className="flex items-center rounded-[4px]  focus:border-blue-brand">
           <input
             type="number"
             id={label}
             className={twMerge(
-              'flex-1 rounded-[4px] rounded-r-none border-gray-300 text-gray-900 focus:border-blue-brand',
+              'flex-1 rounded-[4px] rounded-r-none border-r-0 border-gray-300 text-gray-900 focus:border-blue-brand',
               inputClassName
             )}
             ref={ref}
             {...inputProps}
           />
           <Listbox value={selected} onChange={handleSelectChange}>
-            <div className="relative mt-1">
-              <Listbox.Button className="relative min-w-[80px] cursor-default border-gray-300 bg-white py-2 pl-3 pr-6 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+            <div className="border-1 relative  h-[42px] border border-gray-300 shadow-md">
+              <Listbox.Button className="border-1 relative min-w-[80px]  cursor-default border-gray-300 bg-white py-2 pl-3 pr-6 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                 <span className="block truncate">{selected?.label}</span>
                 <span
                   className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
