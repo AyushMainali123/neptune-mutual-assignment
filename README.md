@@ -36,7 +36,7 @@ Finally, start the development server:
 
 The application has two main cards:
 
--   NEB/BUSD Converter: Allows users to convert an amount between BUSD and NEP currencies. Users can switch currencies by clicking on the "switch" button, and also view their MetaMask data by clicking on the `Wallet details` button.
+-   NEP/BUSD Converter: Allows users to convert an amount between BUSD and NEP currencies. Users can switch currencies by clicking on the "switch" button, and also view their MetaMask data by clicking on the `Wallet details` button.
 
 -   Coin Exchange: Fetches the current value of a coin based on its address. Users can select various coins and convert them accordingly.
 
