@@ -1,0 +1,93 @@
+[
+  {
+    "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "nativePrice": {
+      "value": "522061707211585"
+    },
+    "usdPrice": 0.9989006597141
+  },
+  {
+    "address": "0x514910771af9ca656af840dff83e8264ecf986ca",
+    "nativePrice": {
+      "value": "3908808126323585"
+    },
+    "usdPrice": 7.479022043074331
+  },
+  {
+    "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "nativePrice": {
+      "value": "522897632709221"
+    },
+    "usdPrice": 1.000500100009233
+  },
+  {
+    "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
+    "nativePrice": {
+      "value": "491365348863382"
+    },
+    "usdPrice": 0.9401669656291337
+  },
+  {
+    "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+    "nativePrice": {
+      "value": "523212833016976"
+    },
+    "usdPrice": 1.0011031969056523
+  },
+  {
+    "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+    "nativePrice": {
+      "value": "1000000000000000000"
+    },
+    "usdPrice": 1913.3766103041485
+  },
+  {
+    "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+    "nativePrice": {
+      "value": "14961235048078340400"
+    },
+    "usdPrice": 28626.477202255755
+  },
+  {
+    "address": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+    "nativePrice": {
+      "value": "601954173253211"
+    },
+    "usdPrice": 1.1517650355776643
+  },
+  {
+    "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+    "nativePrice": {
+      "value": "3303362585358572"
+    },
+    "usdPrice": 6.320576706178933
+  },
+  {
+    "address": "0xd533a949740bb3306d119cc777fa900ba034cd52",
+    "nativePrice": {
+      "value": "528206788971007"
+    },
+    "usdPrice": 1.0106585154209835
+  },
+  {
+    "address": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+    "nativePrice": {
+      "value": "360865834830248018"
+    },
+    "usdPrice": 690.4722478220766
+  },
+  {
+    "address": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
+    "nativePrice": {
+      "value": "5938834540"
+    },
+    "usdPrice": 0.000011363227102125
+  },
+  {
+    "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+    "nativePrice": {
+      "value": "41227879250746888"
+    },
+    "usdPrice": 78.88445985082281
+  }
+]

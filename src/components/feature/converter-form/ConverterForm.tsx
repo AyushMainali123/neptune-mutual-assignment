@@ -1,3 +1,4 @@
+import CardWithTitle from '@/components/shared/card-with-title';
 import InputField from '@/components/shared/forms/input-field';
 import { convertCurrencyAmount } from '@/utils/client/convert-currency';
 import { Icon } from '@iconify/react';
@@ -74,42 +75,41 @@ const ConverterForm = () => {
   };
 
   return (
-    <div>
-      <h2 className="mb-5 font-manrope text-xl font-semibold text-zinc-950">
-        Crypto Converter
-      </h2>
-      <div className="mb-4">
-        <InputField
-          inputClassName="w-full"
-          label={firstCurrency.name}
-          inputProps={{
-            type: 'number',
-            value: valueOne,
-            onFocus: (e) => e.target.select(),
-            onChange: handleValueOneChange,
-          }}
-        />
-      </div>
-      <button
-        aria-label="Swap Currency"
-        className="mx-auto my-2 block"
-        onClick={handleSwapButtonClick}
-      >
-        <Icon icon="charm:swap-vertical" hFlip={true} width={'24'} />
-      </button>
-      <div>
-        <InputField
-          inputClassName="w-full"
-          label={secondCurrency.name}
-          inputProps={{
-            type: 'number',
-            value: valueTwo,
-            onFocus: (e) => e.target.select(),
-            onChange: handleValueTwoChange,
-          }}
-        />
-      </div>
-    </div>
+    <>
+      <CardWithTitle title="NEB/BUSD Converter">
+        <div className="mb-4">
+          <InputField
+            inputClassName="w-full"
+            label={firstCurrency.name}
+            inputProps={{
+              type: 'number',
+              value: valueOne,
+              onFocus: (e) => e.target.select(),
+              onChange: handleValueOneChange,
+            }}
+          />
+        </div>
+        <button
+          aria-label="Swap Currency"
+          className="mx-auto my-2 block"
+          onClick={handleSwapButtonClick}
+        >
+          <Icon icon="charm:swap-vertical" hFlip={true} width={'24'} />
+        </button>
+        <div>
+          <InputField
+            inputClassName="w-full"
+            label={secondCurrency.name}
+            inputProps={{
+              type: 'number',
+              value: valueTwo,
+              onFocus: (e) => e.target.select(),
+              onChange: handleValueTwoChange,
+            }}
+          />
+        </div>
+      </CardWithTitle>
+    </>
   );
 };
 

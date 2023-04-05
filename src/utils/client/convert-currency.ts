@@ -17,7 +17,7 @@ export const convertCurrencyAmount = ({
   fromCurrencyAmount,
   toCurrencyAmount,
 }: IConvertCurrency) => {
-  const exchangeRate = toCurrencyAmount / fromCurrencyAmount;
+  const exchangeRate = fromCurrencyAmount / toCurrencyAmount;
   const convertedAmount = amount * exchangeRate;
   return convertedAmount;
 };

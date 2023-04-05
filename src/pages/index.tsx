@@ -1,9 +1,14 @@
 import Card from '@/components/core/card';
 import Logo from '@/components/core/icon/logo';
+import CoinExchangeForm from '@/components/feature/coin-exchange-form';
 import ConverterForm from '@/components/feature/converter-form';
 import WalletDetails from '@/components/shared/wallet-details';
 import { type NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
+const ToastContainer = dynamic(() => import('@/components/core/toast'), {
+  ssr: false,
+});
 
 const Home: NextPage = () => {
   return (
@@ -21,14 +26,30 @@ const Home: NextPage = () => {
           </center>
 
           {/* Content Div */}
-          <Card className="w-[96vw] max-w-sm">
-            <ConverterForm />
-            <div className="mt-6">
-              <WalletDetails />
-            </div>
-          </Card>
+          <div className="flex flex-wrap items-center justify-center gap-12">
+            {/* NEP and BUSD Exchange Form */}
+            <Card className="w-[96vw] max-w-sm">
+              <ConverterForm />
+              <div className="mt-6">
+                <WalletDetails />
+              </div>
+            </Card>
+
+            {/* Coin exchange Form */}
+            <Card className="w-[96vw] max-w-sm">
+              <CoinExchangeForm />
+            </Card>
+          </div>
         </div>
       </main>
+      <ToastContainer
+        limit={3}
+        position="top-center"
+        autoClose={2000}
+        closeButton={false}
+        theme="light"
+        className={'z-[99999]'}
+      />
     </>
   );
 };
