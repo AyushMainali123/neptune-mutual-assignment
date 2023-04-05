@@ -1,28 +1,49 @@
-# Create T3 App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+# Neptune Mutual Currency Converter
 
-## What's next? How do I make an app with this?
+Neptune Mutual Currency Converter is a web application built with React, NextJS, TypeScript, and CSS.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Getting Started
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+To get started with the project, clone the repository and install the dependencies:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+Copy code
 
-## Learn More
+   `https://github.com/AyushMainali123/neptune-mutual-assignment.git`
+    
+   `cd neptune-mutual-assignment`
+	
+Finally, start the development server:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+`npm run dev` 
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Technologies Used
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+-   React
+-   NextJS
+-   TypeScript
+-   CSS
 
-## How do I deploy this?
+## Additional Technologies
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+-   tRPC
+-   NodeJS
+-   Wagmi
+
+
+## Functionality
+
+
+The application has two main cards:
+
+-   NEB/BUSD Converter: Allows users to convert an amount between BUSD and NEP currencies. Users can switch currencies by clicking on the "switch" button, and also view their MetaMask data by clicking on the `Wallet details` button.
+
+-   Coin Exchange: Fetches the current value of a coin based on its address. Users can select various coins and convert them accordingly.
+
+## Improvisations
+
+Following improvisations were made to improve the UX:
+
+-   The application displays an error toast if the API request fails
+-   The application includes a dropdown menu for selecting currencies
+-   The application displays the symbol of the selected currency
